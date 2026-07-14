@@ -94,9 +94,9 @@ export function PalettePanel({
           />
         </label>
         <div className="row-actions">
-          <button type="button" className="btn" onClick={() => onExportBmp(8, 12, 'crest-8x12.bmp')}>BMP 8×12</button>
-          <button type="button" className="btn" onClick={() => onExportBmp(16, 12, 'crest-16x12.bmp')}>BMP 16×12</button>
-          <button type="button" className="btn" onClick={() => onExportBmp(32, 32, 'crest-32x32.bmp')}>BMP 32×32</button>
+          <button type="button" className="btn" title={t('format.8x12.title')} onClick={() => onExportBmp(8, 12, 'crest-8x12.bmp')}>{t('palette.bmpAlliance')}</button>
+          <button type="button" className="btn" title={t('format.16x12.title')} onClick={() => onExportBmp(16, 12, 'crest-16x12.bmp')}>{t('palette.bmpClan')}</button>
+          <button type="button" className="btn" title={t('format.32x32.title')} onClick={() => onExportBmp(32, 32, 'crest-32x32.bmp')}>{t('palette.bmpLarge')}</button>
         </div>
         <p className="hint">{t('palette.bmpHint')}</p>
       </div>
