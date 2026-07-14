@@ -1,4 +1,4 @@
-import { boxDownscaleRGBA } from './imageImport.js';
+import { boxDownscaleRGBA, extractRegionRGBA } from './imageImport.js';
 import { buildColorHistogram, medianCutQuantize, nearestPaletteIndex } from './quantize.js';
 import { encodeBMP8 } from './bmp.js';
 
@@ -15,13 +15,7 @@ export function flattenToOpaque(imageData, bgRgb) {
   return out;
 }
 
-export function exportCrestBmp(imageData, cw, ch, destW, destH, bgRgb) {
-  const flat = flattenToOpaque(imageData, bgRgb);
-  let pixelData = flat, pw = cw, ph = ch;
-  if (destW !== cw || destH !== ch) {
-    pixelData = boxDownscaleRGBA(flat, cw, ch, destW, destH);
-    pw = destW; ph = destH;
-  }
+function quantizeAndEncode(pixelData, pw, ph) {
   const hist = buildColorHistogram(pixelData, pw, ph);
   const palette = medianCutQuantize(hist, 256);
   const indices = new Uint8Array(pw * ph);
@@ -30,4 +24,20 @@ export function exportCrestBmp(imageData, cw, ch, destW, destH, bgRgb) {
     indices[i] = nearestPaletteIndex(pixelData[o], pixelData[o + 1], pixelData[o + 2], palette);
   }
   return { blob: encodeBMP8(pw, ph, indices, palette), width: pw, height: ph, colorCount: palette.length };
+}
+
+export function exportCrestBmp(imageData, cw, ch, destW, destH, bgRgb) {
+  const flat = flattenToOpaque(imageData, bgRgb);
+  let pixelData = flat, pw = cw, ph = ch;
+  if (destW !== cw || destH !== ch) {
+    pixelData = boxDownscaleRGBA(flat, cw, ch, destW, destH);
+    pw = destW; ph = destH;
+  }
+  return quantizeAndEncode(pixelData, pw, ph);
+}
+
+export function exportCrestBmpRegion(imageData, cw, ch, x, y, w, h, bgRgb) {
+  const flat = flattenToOpaque(imageData, bgRgb);
+  const region = extractRegionRGBA(flat, cw, x, y, w, h);
+  return quantizeAndEncode(region, w, h);
 }

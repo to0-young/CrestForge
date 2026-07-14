@@ -223,7 +223,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible{
 
 .divider{ height:1px; background:var(--border); }
 
-.btn-danger{ color:var(--accent2); border-color:var(--border); }
+.btn-danger{ color:var(--accent2); border-color:var(--border); font-weight:700; }
 .btn-danger:hover{ border-color:var(--accent2); }
 
 .canvas-stage{
@@ -434,6 +434,21 @@ footer.hints kbd{
 }
 .modal-actions .btn{ flex:none; padding:.5rem .9rem; }
 .modal-actions .btn-primary{ text-decoration:none; }
+
+.modal-box-wide{ width:min(460px, 100%); }
+.modal-pair{
+  display:flex;
+  gap:1rem;
+  justify-content:center;
+}
+.modal-pair-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.4rem;
+}
+.modal-pair-item .btn-primary{ text-decoration:none; padding:.5rem .7rem; }
+.modal-preview-small{ width:120px; height:120px; }
 
 .crop-dialog-overlay{
   position:fixed;

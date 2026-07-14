@@ -34,9 +34,10 @@ export function PalettePanel({
   activeColor, onSetActiveColor,
   format, onDownloadPng,
   bmpBgColor, onSetBmpBgColor,
-  onExportBmp,
+  onExportBmp, onExportCombined,
 }) {
   const { t } = useI18n();
+  const isCombined = format.cw === 24 && format.ch === 12;
   return (
     <aside className="palette-panel" aria-label={t('panel.paletteAriaLabel')}>
       <div>
@@ -93,11 +94,17 @@ export function PalettePanel({
             onChange={(e) => onSetBmpBgColor(e.target.value)}
           />
         </label>
-        <div className="row-actions">
-          <button type="button" className="btn" title={t('format.8x12.title')} onClick={() => onExportBmp(8, 12, 'crest-8x12.bmp')}>{t('palette.bmpAlliance')}</button>
-          <button type="button" className="btn" title={t('format.16x12.title')} onClick={() => onExportBmp(16, 12, 'crest-16x12.bmp')}>{t('palette.bmpClan')}</button>
-          <button type="button" className="btn" title={t('format.32x32.title')} onClick={() => onExportBmp(32, 32, 'crest-32x32.bmp')}>{t('palette.bmpLarge')}</button>
-        </div>
+        {isCombined ? (
+          <div className="row-actions">
+            <button type="button" className="btn-primary" onClick={onExportCombined}>{t('palette.exportCombined')}</button>
+          </div>
+        ) : (
+          <div className="row-actions">
+            <button type="button" className="btn" title={t('format.8x12.title')} onClick={() => onExportBmp(8, 12, 'crest-8x12.bmp')}>{t('palette.bmpAlliance')}</button>
+            <button type="button" className="btn" title={t('format.16x12.title')} onClick={() => onExportBmp(16, 12, 'crest-16x12.bmp')}>{t('palette.bmpClan')}</button>
+            <button type="button" className="btn" title={t('format.32x32.title')} onClick={() => onExportBmp(32, 32, 'crest-32x32.bmp')}>{t('palette.bmpLarge')}</button>
+          </div>
+        )}
         <p className="hint">{t('palette.bmpHint')}</p>
       </div>
     </aside>

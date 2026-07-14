@@ -22,6 +22,8 @@ export const translations = {
     'format.16x12.title': 'Герб клану 16×12',
     'format.32x32.label': '32×32 · Великий герб',
     'format.32x32.title': 'Великий герб 32×32',
+    'format.24x12.label': '24×12 · Клан+Альянс',
+    'format.24x12.title': 'Клан і альянс одним зображенням (16×12 + 8×12)',
 
     'tool.groupLabel': 'Інструмент',
     'tool.pencil.label': 'Олівець',
@@ -62,6 +64,7 @@ export const translations = {
     'palette.bmpAlliance': 'Альянс 8×12',
     'palette.bmpClan': 'Клан 16×12',
     'palette.bmpLarge': 'Великий герб 32×32',
+    'palette.exportCombined': 'Зберегти Клан+Альянс',
     'palette.bmpHint': 'Індексований 8-біт BMP (до 256 кольорів) — формат, який приймає клієнт Lineage 2. Прозорі пікселі заливаються кольором фону. Якщо розмір експорту відрізняється від поточного формату полотна, малюнок буде пропорційно стиснутий/розтягнутий.',
 
     'footer.pencil': 'олівець',
@@ -84,6 +87,9 @@ export const translations = {
     'modal.pngHint': 'Клацніть правою кнопкою на зображенні і виберіть «Зберегти зображення як…», або натисніть кнопку нижче.',
     'modal.bmpReady': ({ width, height }) => `Готово! BMP ${width}×${height} для Lineage 2:`,
     'modal.bmpHint': ({ colorCount }) => `Формат: 8-біт indexed BMP. Використано кольорів: ${colorCount} з 256.`,
+    'modal.bmpPairReady': 'Готово! Два файли для Lineage 2:',
+    'modal.bmpPairClanLabel': 'Клан 16×12',
+    'modal.bmpPairAllyLabel': 'Альянс 8×12',
 
     'importCrop.title': 'Обрізати перед імпортом',
     'importCrop.useCropLabel': 'Використати обрізку',
@@ -113,6 +119,8 @@ export const translations = {
     'format.16x12.title': 'Герб клана 16×12',
     'format.32x32.label': '32×32 · Большой герб',
     'format.32x32.title': 'Большой герб 32×32',
+    'format.24x12.label': '24×12 · Клан+Альянс',
+    'format.24x12.title': 'Клан и альянс одним изображением (16×12 + 8×12)',
 
     'tool.groupLabel': 'Инструмент',
     'tool.pencil.label': 'Карандаш',
@@ -153,6 +161,7 @@ export const translations = {
     'palette.bmpAlliance': 'Альянс 8×12',
     'palette.bmpClan': 'Клан 16×12',
     'palette.bmpLarge': 'Большой герб 32×32',
+    'palette.exportCombined': 'Сохранить Клан+Альянс',
     'palette.bmpHint': 'Индексированный 8-бит BMP (до 256 цветов) — формат, который принимает клиент Lineage 2. Прозрачные пиксели заливаются цветом фона. Если размер экспорта отличается от текущего формата холста, рисунок будет пропорционально сжат/растянут.',
 
     'footer.pencil': 'карандаш',
@@ -175,6 +184,9 @@ export const translations = {
     'modal.pngHint': 'Кликните правой кнопкой на изображении и выберите «Сохранить изображение как…», или нажмите кнопку ниже.',
     'modal.bmpReady': ({ width, height }) => `Готово! BMP ${width}×${height} для Lineage 2:`,
     'modal.bmpHint': ({ colorCount }) => `Формат: 8-бит indexed BMP. Использовано цветов: ${colorCount} из 256.`,
+    'modal.bmpPairReady': 'Готово! Два файла для Lineage 2:',
+    'modal.bmpPairClanLabel': 'Клан 16×12',
+    'modal.bmpPairAllyLabel': 'Альянс 8×12',
 
     'importCrop.title': 'Обрезать перед импортом',
     'importCrop.useCropLabel': 'Использовать обрезку',
@@ -204,6 +216,8 @@ export const translations = {
     'format.16x12.title': 'Clan crest 16×12',
     'format.32x32.label': '32×32 · Large crest',
     'format.32x32.title': 'Large crest 32×32',
+    'format.24x12.label': '24×12 · Clan+Alliance',
+    'format.24x12.title': 'Clan and alliance as one image (16×12 + 8×12)',
 
     'tool.groupLabel': 'Tool',
     'tool.pencil.label': 'Pencil',
@@ -244,6 +258,7 @@ export const translations = {
     'palette.bmpAlliance': 'Alliance 8×12',
     'palette.bmpClan': 'Clan 16×12',
     'palette.bmpLarge': 'Large crest 32×32',
+    'palette.exportCombined': 'Save Clan+Alliance',
     'palette.bmpHint': 'Indexed 8-bit BMP (up to 256 colors) — the format the Lineage 2 client accepts. Transparent pixels are filled with the background color. If the export size differs from the current canvas format, the artwork will be proportionally squashed/stretched.',
 
     'footer.pencil': 'pencil',
@@ -266,6 +281,9 @@ export const translations = {
     'modal.pngHint': 'Right-click the image and choose "Save image as…", or use the button below.',
     'modal.bmpReady': ({ width, height }) => `Done! BMP ${width}×${height} for Lineage 2:`,
     'modal.bmpHint': ({ colorCount }) => `Format: 8-bit indexed BMP. Colors used: ${colorCount} of 256.`,
+    'modal.bmpPairReady': 'Done! Two files for Lineage 2:',
+    'modal.bmpPairClanLabel': 'Clan 16×12',
+    'modal.bmpPairAllyLabel': 'Alliance 8×12',
 
     'importCrop.title': 'Crop before import',
     'importCrop.useCropLabel': 'Use crop',

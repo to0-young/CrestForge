@@ -66,11 +66,34 @@ export function Modal({ modal, onClose }) {
         </div>
       </>
     );
+  } else if (modal.kind === 'bmpPair') {
+    body = (
+      <>
+        <p className="modal-text">{t('modal.bmpPairReady')}</p>
+        <div className="modal-pair">
+          <div className="modal-pair-item">
+            <p className="hint">{t('modal.bmpPairClanLabel')}</p>
+            <img className="modal-preview modal-preview-small" src={modal.clan.url} alt={modal.clan.filename} />
+            <a className="btn-primary" href={modal.clan.url} download={modal.clan.filename}>{t('modal.downloadFile')}</a>
+          </div>
+          <div className="modal-pair-item">
+            <p className="hint">{t('modal.bmpPairAllyLabel')}</p>
+            <img className="modal-preview modal-preview-small" src={modal.ally.url} alt={modal.ally.filename} />
+            <a className="btn-primary" href={modal.ally.url} download={modal.ally.filename}>{t('modal.downloadFile')}</a>
+          </div>
+        </div>
+        <div className="modal-actions">
+          <button type="button" className="btn" onClick={onClose}>{t('modal.close')}</button>
+        </div>
+      </>
+    );
   }
+
+  const boxClassName = modal.kind === 'bmpPair' ? 'modal-box modal-box-wide' : 'modal-box';
 
   return (
     <div className="modal-overlay" onClick={handleOverlayClick}>
-      <div className="modal-box" role="dialog" aria-modal="true">{body}</div>
+      <div className={boxClassName} role="dialog" aria-modal="true">{body}</div>
     </div>
   );
 }

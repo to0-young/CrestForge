@@ -55,6 +55,7 @@ function App() {
           bmpBgColor={editor.bmpBgColor}
           onSetBmpBgColor={editor.setBmpBgColor}
           onExportBmp={editor.exportBmp}
+          onExportCombined={editor.exportCombined}
         />
       </main>
 
