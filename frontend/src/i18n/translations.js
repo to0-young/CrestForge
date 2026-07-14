@@ -81,6 +81,12 @@ export const translations = {
     'modal.pngHint': 'Клацніть правою кнопкою на зображенні і виберіть «Зберегти зображення як…», або натисніть кнопку нижче.',
     'modal.bmpReady': ({ width, height }) => `Готово! BMP ${width}×${height} для Lineage 2:`,
     'modal.bmpHint': ({ colorCount }) => `Формат: 8-біт indexed BMP. Використано кольорів: ${colorCount} з 256.`,
+
+    'importCrop.title': 'Обрізати перед імпортом',
+    'importCrop.useCropLabel': 'Використати обрізку',
+    'importCrop.trueSizeLabel': ({ cw, ch }) => `Справжній розмір ${cw}×${ch}`,
+    'importCrop.resultZoomLabel': ({ cw, ch }) => `Результат ${cw}×${ch} (збільшено)`,
+    'importCrop.apply': 'Застосувати',
   },
 
   ru: {
@@ -163,6 +169,12 @@ export const translations = {
     'modal.pngHint': 'Кликните правой кнопкой на изображении и выберите «Сохранить изображение как…», или нажмите кнопку ниже.',
     'modal.bmpReady': ({ width, height }) => `Готово! BMP ${width}×${height} для Lineage 2:`,
     'modal.bmpHint': ({ colorCount }) => `Формат: 8-бит indexed BMP. Использовано цветов: ${colorCount} из 256.`,
+
+    'importCrop.title': 'Обрезать перед импортом',
+    'importCrop.useCropLabel': 'Использовать обрезку',
+    'importCrop.trueSizeLabel': ({ cw, ch }) => `Настоящий размер ${cw}×${ch}`,
+    'importCrop.resultZoomLabel': ({ cw, ch }) => `Результат ${cw}×${ch} (увеличено)`,
+    'importCrop.apply': 'Применить',
   },
 
   en: {
@@ -245,5 +257,11 @@ export const translations = {
     'modal.pngHint': 'Right-click the image and choose "Save image as…", or use the button below.',
     'modal.bmpReady': ({ width, height }) => `Done! BMP ${width}×${height} for Lineage 2:`,
     'modal.bmpHint': ({ colorCount }) => `Format: 8-bit indexed BMP. Colors used: ${colorCount} of 256.`,
+
+    'importCrop.title': 'Crop before import',
+    'importCrop.useCropLabel': 'Use crop',
+    'importCrop.trueSizeLabel': ({ cw, ch }) => `True size ${cw}×${ch}`,
+    'importCrop.resultZoomLabel': ({ cw, ch }) => `Result ${cw}×${ch} (zoom)`,
+    'importCrop.apply': 'Apply',
   },
 };
