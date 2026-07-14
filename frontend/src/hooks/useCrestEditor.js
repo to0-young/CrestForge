@@ -3,7 +3,7 @@ import { hexToRgb } from '../lib/color.js';
 import { linePixels, rectPixels, circlePixels } from '../lib/shapes.js';
 import { floodFill } from '../lib/floodFill.js';
 import { loadImageFile } from '../lib/imageImport.js';
-import { exportCrestBmp } from '../lib/bmpExport.js';
+import { exportCrestBmp, exportCrestBmpRegion } from '../lib/bmpExport.js';
 import { useI18n } from '../i18n/useI18n.js';
 
 const MAX_HISTORY = 60;
@@ -242,6 +242,10 @@ export function useCrestEditor() {
   const closeModal = useCallback(() => {
     setModal((m) => {
       if (m && m.kind === 'bmp' && m.url) URL.revokeObjectURL(m.url);
+      if (m && m.kind === 'bmpPair') {
+        if (m.clan.url) URL.revokeObjectURL(m.clan.url);
+        if (m.ally.url) URL.revokeObjectURL(m.ally.url);
+      }
       return null;
     });
   }, []);
@@ -275,6 +279,19 @@ export function useCrestEditor() {
     setModal({ kind: 'bmp', url, filename, width: result.width, height: result.height, colorCount: result.colorCount });
   }, [format, getBctx, bmpBgColor]);
 
+  const exportCombined = useCallback(() => {
+    const { cw, ch } = format;
+    const imageData = getBctx().getImageData(0, 0, cw, ch);
+    const bgRgb = hexToRgb(bmpBgColor);
+    const clanResult = exportCrestBmpRegion(imageData, cw, ch, 0, 0, 16, 12, bgRgb);
+    const allyResult = exportCrestBmpRegion(imageData, cw, ch, 16, 0, 8, 12, bgRgb);
+    setModal({
+      kind: 'bmpPair',
+      clan: { url: URL.createObjectURL(clanResult.blob), filename: 'crest-16x12.bmp', ...clanResult },
+      ally: { url: URL.createObjectURL(allyResult.blob), filename: 'crest-8x12.bmp', ...allyResult },
+    });
+  }, [format, getBctx, bmpBgColor]);
+
   useEffect(() => {
     function onKeyDown(e) {
       const tag = (e.target && e.target.tagName) || '';
@@ -305,7 +322,7 @@ export function useCrestEditor() {
     handlePointerDown, handlePointerMove,
     handlePointerUp: finishStroke, handlePointerCancel: finishStroke,
     importImage, commitImport,
-    downloadPng, exportBmp,
+    downloadPng, exportBmp, exportCombined,
     bmpBgColor, setBmpBgColor,
     modal, closeModal,
   };
