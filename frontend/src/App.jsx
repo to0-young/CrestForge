@@ -6,6 +6,7 @@ import { ToolsPanel } from './components/ToolsPanel.jsx';
 import { CanvasStage } from './components/CanvasStage.jsx';
 import { PalettePanel } from './components/PalettePanel.jsx';
 import { Modal } from './components/Modal.jsx';
+import { ImportCropDialog } from './components/ImportCropDialog.jsx';
 
 function App() {
   const editor = useCrestEditor();
@@ -59,7 +60,16 @@ function App() {
 
       <Footer />
 
-      <Modal modal={editor.modal} onClose={editor.closeModal} />
+      {editor.modal && editor.modal.kind === 'importCrop'
+        ? (
+          <ImportCropDialog
+            img={editor.modal.img}
+            format={editor.format}
+            onApply={editor.commitImport}
+            onCancel={editor.closeModal}
+          />
+        )
+        : <Modal modal={editor.modal} onClose={editor.closeModal} />}
     </div>
   );
 }
