@@ -91,6 +91,8 @@ export const translations = {
     'modal.bmpPairClanLabel': 'Клан 16×12',
     'modal.bmpPairAllyLabel': 'Альянс 8×12',
 
+    'toast.emptyCanvas': 'Полотно порожнє — нема чого завантажувати',
+
     'importCrop.title': 'Обрізати перед імпортом',
     'importCrop.useCropLabel': 'Використати обрізку',
     'importCrop.trueSizeLabel': ({ cw, ch }) => `Справжній розмір ${cw}×${ch}`,
@@ -188,6 +190,8 @@ export const translations = {
     'modal.bmpPairClanLabel': 'Клан 16×12',
     'modal.bmpPairAllyLabel': 'Альянс 8×12',
 
+    'toast.emptyCanvas': 'Холст пуст — нечего скачивать',
+
     'importCrop.title': 'Обрезать перед импортом',
     'importCrop.useCropLabel': 'Использовать обрезку',
     'importCrop.trueSizeLabel': ({ cw, ch }) => `Настоящий размер ${cw}×${ch}`,
@@ -284,6 +288,8 @@ export const translations = {
     'modal.bmpPairReady': 'Done! Two files for Lineage 2:',
     'modal.bmpPairClanLabel': 'Clan 16×12',
     'modal.bmpPairAllyLabel': 'Alliance 8×12',
+
+    'toast.emptyCanvas': 'Canvas is empty — nothing to download',
 
     'importCrop.title': 'Crop before import',
     'importCrop.useCropLabel': 'Use crop',

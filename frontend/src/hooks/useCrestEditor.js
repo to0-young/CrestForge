@@ -8,6 +8,13 @@ import { useI18n } from '../i18n/useI18n.js';
 
 const MAX_HISTORY = 60;
 
+function hasVisiblePixels(data) {
+  for (let i = 3; i < data.length; i += 4) {
+    if (data[i] !== 0) return true;
+  }
+  return false;
+}
+
 export function useCrestEditor() {
   const { t } = useI18n();
   const viewRef = useRef(null);
@@ -23,11 +30,24 @@ export function useCrestEditor() {
   const [canRedo, setCanRedo] = useState(false);
   const [bmpBgColor, setBmpBgColor] = useState('#ffffff');
   const [modal, setModal] = useState(null);
+  const [hasContent, setHasContent] = useState(false);
+  const [toast, setToast] = useState(null);
 
   const undoStackRef = useRef([]);
   const redoStackRef = useRef([]);
   const drawingRef = useRef(false);
   const startRef = useRef([0, 0]);
+  const toastTimerRef = useRef(null);
+
+  const showToast = useCallback((message) => {
+    setToast(message);
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+    toastTimerRef.current = setTimeout(() => setToast(null), 2600);
+  }, []);
+
+  useEffect(() => () => {
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+  }, []);
 
   const getBctx = useCallback(() => bufferRef.current.getContext('2d'), []);
   const getVctx = useCallback(() => viewRef.current.getContext('2d'), []);
@@ -74,7 +94,8 @@ export function useCrestEditor() {
       }
     }
     if (gridOn) drawGrid(vctx, cw, ch);
-  }, [format, scale, gridOn, activeColor, drawGrid, getVctx]);
+    setHasContent(hasVisiblePixels(getBctx().getImageData(0, 0, cw, ch).data));
+  }, [format, scale, gridOn, activeColor, drawGrid, getVctx, getBctx]);
 
   // Redraw whenever anything render() depends on changes, including right after
   // format/scale changes have resized (and thus cleared) the canvas elements.
@@ -128,9 +149,7 @@ export function useCrestEditor() {
 
   const bufferHasContent = useCallback(() => {
     const { cw, ch } = format;
-    const d = getBctx().getImageData(0, 0, cw, ch).data;
-    for (let i = 3; i < d.length; i += 4) if (d[i] !== 0) return true;
-    return false;
+    return hasVisiblePixels(getBctx().getImageData(0, 0, cw, ch).data);
   }, [format, getBctx]);
 
   const applyFormatChange = useCallback((w, h) => {
@@ -265,21 +284,24 @@ export function useCrestEditor() {
   }, [format, pushUndo, getBctx, render, closeModal]);
 
   const downloadPng = useCallback(() => {
+    if (!bufferHasContent()) { showToast(t('toast.emptyCanvas')); return; }
     const dataUrl = bufferRef.current.toDataURL('image/png');
     const { cw, ch } = format;
     setModal({ kind: 'png', dataUrl, filename: `crest-${cw}x${ch}.png` });
-  }, [format]);
+  }, [format, bufferHasContent, showToast, t]);
 
   const exportBmp = useCallback((destW, destH, filename) => {
+    if (!bufferHasContent()) { showToast(t('toast.emptyCanvas')); return; }
     const { cw, ch } = format;
     const imageData = getBctx().getImageData(0, 0, cw, ch);
     const bgRgb = hexToRgb(bmpBgColor);
     const result = exportCrestBmp(imageData, cw, ch, destW, destH, bgRgb);
     const url = URL.createObjectURL(result.blob);
     setModal({ kind: 'bmp', url, filename, width: result.width, height: result.height, colorCount: result.colorCount });
-  }, [format, getBctx, bmpBgColor]);
+  }, [format, getBctx, bmpBgColor, bufferHasContent, showToast, t]);
 
   const exportCombined = useCallback(() => {
+    if (!bufferHasContent()) { showToast(t('toast.emptyCanvas')); return; }
     const { cw, ch } = format;
     const imageData = getBctx().getImageData(0, 0, cw, ch);
     const bgRgb = hexToRgb(bmpBgColor);
@@ -290,7 +312,7 @@ export function useCrestEditor() {
       clan: { url: URL.createObjectURL(clanResult.blob), filename: 'crest-16x12.bmp', ...clanResult },
       ally: { url: URL.createObjectURL(allyResult.blob), filename: 'crest-8x12.bmp', ...allyResult },
     });
-  }, [format, getBctx, bmpBgColor]);
+  }, [format, getBctx, bmpBgColor, bufferHasContent, showToast, t]);
 
   useEffect(() => {
     function onKeyDown(e) {
@@ -322,8 +344,9 @@ export function useCrestEditor() {
     handlePointerDown, handlePointerMove,
     handlePointerUp: finishStroke, handlePointerCancel: finishStroke,
     importImage, commitImport,
-    downloadPng, exportBmp, exportCombined,
+    downloadPng, exportBmp, exportCombined, hasContent,
     bmpBgColor, setBmpBgColor,
     modal, closeModal,
+    toast,
   };
 }

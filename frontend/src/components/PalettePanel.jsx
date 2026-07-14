@@ -34,7 +34,7 @@ export function PalettePanel({
   activeColor, onSetActiveColor,
   format, onDownloadPng,
   bmpBgColor, onSetBmpBgColor,
-  onExportBmp, onExportCombined,
+  onExportBmp, onExportCombined, hasContent,
 }) {
   const { t } = useI18n();
   const isCombined = format.cw === 24 && format.ch === 12;
@@ -75,7 +75,7 @@ export function PalettePanel({
 
       <div className="divider"></div>
 
-      <button type="button" className="btn-primary" onClick={onDownloadPng}>
+      <button type="button" className="btn-primary" aria-disabled={!hasContent} onClick={onDownloadPng}>
         <DownloadIcon />
         <span>{t('palette.downloadPng', { cw: format.cw, ch: format.ch })}</span>
       </button>
@@ -96,13 +96,13 @@ export function PalettePanel({
         </label>
         {isCombined ? (
           <div className="row-actions">
-            <button type="button" className="btn-primary" onClick={onExportCombined}>{t('palette.exportCombined')}</button>
+            <button type="button" className="btn-primary" aria-disabled={!hasContent} onClick={onExportCombined}>{t('palette.exportCombined')}</button>
           </div>
         ) : (
           <div className="row-actions">
-            <button type="button" className="btn" title={t('format.8x12.title')} onClick={() => onExportBmp(8, 12, 'crest-8x12.bmp')}>{t('palette.bmpAlliance')}</button>
-            <button type="button" className="btn" title={t('format.16x12.title')} onClick={() => onExportBmp(16, 12, 'crest-16x12.bmp')}>{t('palette.bmpClan')}</button>
-            <button type="button" className="btn" title={t('format.32x32.title')} onClick={() => onExportBmp(32, 32, 'crest-32x32.bmp')}>{t('palette.bmpLarge')}</button>
+            <button type="button" className="btn" aria-disabled={!hasContent} title={t('format.8x12.title')} onClick={() => onExportBmp(8, 12, 'crest-8x12.bmp')}>{t('palette.bmpAlliance')}</button>
+            <button type="button" className="btn" aria-disabled={!hasContent} title={t('format.16x12.title')} onClick={() => onExportBmp(16, 12, 'crest-16x12.bmp')}>{t('palette.bmpClan')}</button>
+            <button type="button" className="btn" aria-disabled={!hasContent} title={t('format.32x32.title')} onClick={() => onExportBmp(32, 32, 'crest-32x32.bmp')}>{t('palette.bmpLarge')}</button>
           </div>
         )}
         <p className="hint">{t('palette.bmpHint')}</p>
