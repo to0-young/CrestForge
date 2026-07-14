@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { hexToRgb } from '../lib/color.js';
 import { linePixels, rectPixels, circlePixels } from '../lib/shapes.js';
 import { floodFill } from '../lib/floodFill.js';
-import { loadImageFile, fitDimensions, boxDownscaleRGBA } from '../lib/imageImport.js';
+import { loadImageFile } from '../lib/imageImport.js';
 import { exportCrestBmp } from '../lib/bmpExport.js';
 import { useI18n } from '../i18n/useI18n.js';
 
@@ -239,41 +239,26 @@ export function useCrestEditor() {
     render();
   }, [coordsFromEvent, tool, shapeFilled, getBctx, activeColor, render]);
 
-  const importImageIntoBuffer = useCallback((img) => {
-    const { cw, ch } = format;
-    const srcW = img.naturalWidth || img.width, srcH = img.naturalHeight || img.height;
-    const tmp = document.createElement('canvas');
-    const CAP = 1024;
-    if (Math.max(srcW, srcH) > CAP) {
-      const s = CAP / Math.max(srcW, srcH);
-      tmp.width = Math.round(srcW * s); tmp.height = Math.round(srcH * s);
-    } else { tmp.width = srcW; tmp.height = srcH; }
-    const tctx = tmp.getContext('2d');
-    tctx.drawImage(img, 0, 0, tmp.width, tmp.height);
-    const srcData = tctx.getImageData(0, 0, tmp.width, tmp.height).data;
-
-    const [destW, destH] = fitDimensions(tmp.width, tmp.height, cw, ch);
-    const block = boxDownscaleRGBA(srcData, tmp.width, tmp.height, destW, destH);
-
-    pushUndo();
-    const bctx = getBctx();
-    const full = bctx.createImageData(cw, ch);
-    const offX = Math.floor((cw - destW) / 2), offY = Math.floor((ch - destH) / 2);
-    for (let y = 0; y < destH; y++) {
-      for (let x = 0; x < destW; x++) {
-        const si = (y * destW + x) * 4, di = ((y + offY) * cw + (x + offX)) * 4;
-        full.data[di] = block[si]; full.data[di + 1] = block[si + 1];
-        full.data[di + 2] = block[si + 2]; full.data[di + 3] = block[si + 3];
-      }
-    }
-    bctx.clearRect(0, 0, cw, ch);
-    bctx.putImageData(full, 0, 0);
-    render();
-  }, [format, pushUndo, getBctx, render]);
+  const closeModal = useCallback(() => {
+    setModal((m) => {
+      if (m && m.kind === 'bmp' && m.url) URL.revokeObjectURL(m.url);
+      return null;
+    });
+  }, []);
 
   const importImage = useCallback((file) => {
-    loadImageFile(file, importImageIntoBuffer);
-  }, [importImageIntoBuffer]);
+    loadImageFile(file, (img) => setModal({ kind: 'importCrop', img }));
+  }, []);
+
+  const commitImport = useCallback((finalRGBA) => {
+    const { cw, ch } = format;
+    pushUndo();
+    const bctx = getBctx();
+    bctx.clearRect(0, 0, cw, ch);
+    bctx.putImageData(new ImageData(finalRGBA, cw, ch), 0, 0);
+    render();
+    closeModal();
+  }, [format, pushUndo, getBctx, render, closeModal]);
 
   const downloadPng = useCallback(() => {
     const dataUrl = bufferRef.current.toDataURL('image/png');
@@ -289,13 +274,6 @@ export function useCrestEditor() {
     const url = URL.createObjectURL(result.blob);
     setModal({ kind: 'bmp', url, filename, width: result.width, height: result.height, colorCount: result.colorCount });
   }, [format, getBctx, bmpBgColor]);
-
-  const closeModal = useCallback(() => {
-    setModal((m) => {
-      if (m && m.kind === 'bmp' && m.url) URL.revokeObjectURL(m.url);
-      return null;
-    });
-  }, []);
 
   useEffect(() => {
     function onKeyDown(e) {
@@ -326,7 +304,7 @@ export function useCrestEditor() {
     canUndo, canRedo, undo, redo, clearCanvas,
     handlePointerDown, handlePointerMove,
     handlePointerUp: finishStroke, handlePointerCancel: finishStroke,
-    importImage,
+    importImage, commitImport,
     downloadPng, exportBmp,
     bmpBgColor, setBmpBgColor,
     modal, closeModal,

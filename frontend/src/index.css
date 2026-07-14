@@ -434,3 +434,112 @@ footer.hints kbd{
 }
 .modal-actions .btn{ flex:none; padding:.5rem .9rem; }
 .modal-actions .btn-primary{ text-decoration:none; }
+
+.crop-dialog-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(20,17,10,.55);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:1.2rem;
+  z-index:50;
+}
+.crop-dialog-box{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  box-shadow:var(--shadow);
+  padding:1.2rem;
+  width:min(880px, 96vw);
+  max-height:90vh;
+  overflow:auto;
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+}
+.crop-dialog-panels{
+  display:grid;
+  grid-template-columns: minmax(260px,1fr) auto auto;
+  gap:1.2rem;
+  align-items:start;
+}
+.crop-panel{ display:flex; flex-direction:column; gap:.6rem; }
+
+.crop-toggle-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.6rem;
+  font-size:.72rem;
+  color:var(--muted);
+}
+.toggle-switch{
+  width:38px; height:22px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--surface-2);
+  position:relative;
+  padding:0;
+  flex:none;
+  transition:background .15s ease, border-color .15s ease;
+}
+.toggle-switch[aria-checked="true"]{ background:var(--accent); border-color:var(--accent); }
+.toggle-thumb{
+  position:absolute; top:1px; left:1px;
+  width:18px; height:18px;
+  border-radius:50%;
+  background:var(--surface);
+  box-shadow:var(--shadow);
+  transition:transform .15s ease;
+  display:block;
+}
+.toggle-switch[aria-checked="true"] .toggle-thumb{ transform:translateX(16px); }
+
+.crop-stage-outer{
+  width:280px; height:280px;
+  display:flex; align-items:center; justify-content:center;
+  border:1px solid var(--border);
+  border-radius:6px;
+  overflow:hidden;
+  background-image:
+    conic-gradient(var(--checker-a) 90deg, var(--checker-b) 90deg 180deg, var(--checker-a) 180deg 270deg, var(--checker-b) 270deg);
+  background-size:10px 10px;
+}
+.crop-stage{ position:relative; }
+.crop-stage img{ position:absolute; inset:0; display:block; }
+
+.crop-rect{
+  position:absolute;
+  border:1px solid var(--accent);
+  box-shadow:0 0 0 9999px rgba(0,0,0,.45);
+}
+.crop-body{ position:absolute; inset:0; cursor:move; touch-action:none; }
+.crop-handle{
+  position:absolute;
+  width:16px; height:16px;
+  margin:-8px;
+  background:var(--accent);
+  border:2px solid var(--surface);
+  border-radius:3px;
+  touch-action:none;
+}
+.crop-handle-nw{ left:0; top:0; cursor:nwse-resize; }
+.crop-handle-ne{ left:100%; top:0; cursor:nesw-resize; }
+.crop-handle-sw{ left:0; top:100%; cursor:nesw-resize; }
+.crop-handle-se{ left:100%; top:100%; cursor:nwse-resize; }
+
+.crop-preview-box{
+  width:200px; height:200px;
+  display:flex; align-items:center; justify-content:center;
+  border:1px solid var(--border);
+  border-radius:6px;
+  background-image:
+    conic-gradient(var(--checker-a) 90deg, var(--checker-b) 90deg 180deg, var(--checker-a) 180deg 270deg, var(--checker-b) 270deg);
+  background-size:10px 10px;
+}
+.crop-preview-canvas{ image-rendering:pixelated; display:block; }
+
+@media (max-width:860px){
+  .crop-dialog-panels{ grid-template-columns:1fr; justify-items:center; }
+}
