@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "WebSearch"
+      "WebSearch",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://127.0.0.1:3001/)",
+      "Bash(export NODE_PATH=/tmp/claude-1000/-home-yevhen-Documents-CrestForge/533eaf5c-f1ec-4815-820e-f9c46ed526c0/scratchpad/verify/node_modules)",
+      "Bash(node run-labels.js)"
     ]
   }
 }

@@ -59,6 +59,9 @@ export const translations = {
     'palette.pngHint': 'Фон прозорий — підходить як герб клану/альянсу. Порожні пікселі не потрапляють у зображення.',
     'palette.exportGroupLabel': 'Експорт для Lineage 2',
     'palette.bmpBg': 'Фон BMP',
+    'palette.bmpAlliance': 'Альянс 8×12',
+    'palette.bmpClan': 'Клан 16×12',
+    'palette.bmpLarge': 'Великий герб 32×32',
     'palette.bmpHint': 'Індексований 8-біт BMP (до 256 кольорів) — формат, який приймає клієнт Lineage 2. Прозорі пікселі заливаються кольором фону. Якщо розмір експорту відрізняється від поточного формату полотна, малюнок буде пропорційно стиснутий/розтягнутий.',
 
     'footer.pencil': 'олівець',
@@ -141,6 +144,9 @@ export const translations = {
     'palette.pngHint': 'Фон прозрачный — подходит как герб клана/альянса. Пустые пиксели не попадают в изображение.',
     'palette.exportGroupLabel': 'Экспорт для Lineage 2',
     'palette.bmpBg': 'Фон BMP',
+    'palette.bmpAlliance': 'Альянс 8×12',
+    'palette.bmpClan': 'Клан 16×12',
+    'palette.bmpLarge': 'Большой герб 32×32',
     'palette.bmpHint': 'Индексированный 8-бит BMP (до 256 цветов) — формат, который принимает клиент Lineage 2. Прозрачные пиксели заливаются цветом фона. Если размер экспорта отличается от текущего формата холста, рисунок будет пропорционально сжат/растянут.',
 
     'footer.pencil': 'карандаш',
@@ -223,6 +229,9 @@ export const translations = {
     'palette.pngHint': 'Background is transparent — suitable as a clan/alliance crest. Empty pixels are excluded from the image.',
     'palette.exportGroupLabel': 'Export for Lineage 2',
     'palette.bmpBg': 'BMP background',
+    'palette.bmpAlliance': 'Alliance 8×12',
+    'palette.bmpClan': 'Clan 16×12',
+    'palette.bmpLarge': 'Large crest 32×32',
     'palette.bmpHint': 'Indexed 8-bit BMP (up to 256 colors) — the format the Lineage 2 client accepts. Transparent pixels are filled with the background color. If the export size differs from the current canvas format, the artwork will be proportionally squashed/stretched.',
 
     'footer.pencil': 'pencil',
