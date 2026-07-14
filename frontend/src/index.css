@@ -209,8 +209,8 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible{
   gap:.35rem;
 }
 .btn:hover{ border-color:var(--accent); }
-.btn:disabled{ opacity:.4; cursor:default; }
-.btn:disabled:hover{ border-color:var(--border); }
+.btn:disabled, .btn[aria-disabled="true"]{ opacity:.4; cursor:default; }
+.btn:disabled:hover, .btn[aria-disabled="true"]:hover{ border-color:var(--border); }
 
 .check-row{
   display:flex;
@@ -350,6 +350,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible{
 }
 .btn-primary:hover{ filter:brightness(1.06); }
 .btn-primary svg{ width:15px; height:15px; stroke:var(--accent-ink); }
+.btn-primary:disabled, .btn-primary[aria-disabled="true"]{ opacity:.4; cursor:default; filter:none; }
 
 .hint{
   font-size:.66rem;
@@ -557,4 +558,26 @@ footer.hints kbd{
 
 @media (max-width:860px){
   .crop-dialog-panels{ grid-template-columns:1fr; justify-items:center; }
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:1.4rem;
+  transform:translateX(-50%);
+  background:var(--text);
+  color:var(--bg);
+  padding:.6rem 1.1rem;
+  border-radius:8px;
+  font-size:.74rem;
+  box-shadow:var(--shadow);
+  z-index:60;
+  animation:toast-in .15s ease;
+}
+@keyframes toast-in{
+  from{ opacity:0; transform:translate(-50%, 6px); }
+  to{ opacity:1; transform:translate(-50%, 0); }
+}
+@media (prefers-reduced-motion: reduce){
+  .toast{ animation:none; }
 }

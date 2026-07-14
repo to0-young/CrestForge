@@ -7,6 +7,7 @@ import { CanvasStage } from './components/CanvasStage.jsx';
 import { PalettePanel } from './components/PalettePanel.jsx';
 import { Modal } from './components/Modal.jsx';
 import { ImportCropDialog } from './components/ImportCropDialog.jsx';
+import { Toast } from './components/Toast.jsx';
 
 function App() {
   const editor = useCrestEditor();
@@ -56,6 +57,7 @@ function App() {
           onSetBmpBgColor={editor.setBmpBgColor}
           onExportBmp={editor.exportBmp}
           onExportCombined={editor.exportCombined}
+          hasContent={editor.hasContent}
         />
       </main>
 
@@ -71,6 +73,8 @@ function App() {
           />
         )
         : <Modal modal={editor.modal} onClose={editor.closeModal} />}
+
+      <Toast message={editor.toast} />
     </div>
   );
 }
