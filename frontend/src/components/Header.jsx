@@ -1,5 +1,6 @@
 import { SunIcon, MoonIcon } from './icons.jsx';
 import { useI18n } from '../i18n/useI18n.js';
+import { HelpPanel } from './HelpPanel.jsx';
 
 const LANG_LABELS = { uk: 'UA', ru: 'RU', en: 'EN' };
 
@@ -14,6 +15,8 @@ export function Header({ theme, onToggleTheme }) {
         <h1>{t('brand.title')}</h1>
         <p>{t('brand.subtitle')}</p>
       </div>
+
+      <HelpPanel />
 
       <div className="lang-switch" role="group">
         {Object.keys(LANG_LABELS).map((code) => (
