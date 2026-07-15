@@ -16,32 +16,34 @@ export function Header({ theme, onToggleTheme }) {
         <p>{t('brand.subtitle')}</p>
       </div>
 
-      <HelpPanel />
+      <div className="topbar-controls">
+        <HelpPanel />
 
-      <div className="lang-switch" role="group">
-        {Object.keys(LANG_LABELS).map((code) => (
-          <button
-            key={code}
-            type="button"
-            className="lang-btn"
-            aria-pressed={lang === code}
-            title={t(`lang.${code}`)}
-            onClick={() => setLang(code)}
-          >
-            {LANG_LABELS[code]}
-          </button>
-        ))}
+        <div className="lang-switch" role="group">
+          {Object.keys(LANG_LABELS).map((code) => (
+            <button
+              key={code}
+              type="button"
+              className="lang-btn"
+              aria-pressed={lang === code}
+              title={t(`lang.${code}`)}
+              onClick={() => setLang(code)}
+            >
+              {LANG_LABELS[code]}
+            </button>
+          ))}
+        </div>
+
+        <button
+          type="button"
+          className="theme-toggle"
+          aria-pressed={isDark}
+          title={isDark ? t('theme.toLight') : t('theme.toDark')}
+          onClick={onToggleTheme}
+        >
+          {isDark ? <MoonIcon /> : <SunIcon />}
+        </button>
       </div>
-
-      <button
-        type="button"
-        className="theme-toggle"
-        aria-pressed={isDark}
-        title={isDark ? t('theme.toLight') : t('theme.toDark')}
-        onClick={onToggleTheme}
-      >
-        {isDark ? <MoonIcon /> : <SunIcon />}
-      </button>
     </header>
   );
 }

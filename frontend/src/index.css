@@ -68,7 +68,8 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible{
 .topbar{
   display:flex;
   align-items:center;
-  gap:.85rem;
+  flex-wrap:wrap;
+  gap:.5rem .85rem;
   padding:1.1rem 1.4rem;
   border-bottom:1px solid var(--border);
   background:var(--surface);
@@ -95,9 +96,15 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible{
   color:var(--muted);
 }
 
+.topbar-controls{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  flex-wrap:wrap;
+}
 .help-widget{
   position:relative;
-  margin-left:auto;
 }
 .help-toggle{
   padding:.4rem .7rem;
@@ -294,6 +301,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible{
 .zoom-value{ min-width:3.2em; text-align:center; font-variant-numeric:tabular-nums; }
 
 .canvas-wrap{
+  max-width:100%;
   border:1px solid var(--border);
   box-shadow:var(--shadow);
   line-height:0;
@@ -302,6 +310,8 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible{
 }
 .canvas-wrap canvas{
   display:block;
+  max-width:100%;
+  height:auto;
   image-rendering:pixelated;
   touch-action:none;
   cursor:crosshair;
@@ -421,6 +431,12 @@ footer.hints kbd{
   .tools .group-label{ width:100%; }
   .tool-grid{ grid-template-columns:repeat(4,72px); }
   .palette-panel{ border-left:none; border-top:1px solid var(--border); }
+  .canvas-stage{ padding:1rem .6rem; }
+}
+
+@media (max-width:480px){
+  .canvas-stage{ padding:.75rem .4rem; gap:.6rem; }
+  .zoom-row{ font-size:.62rem; gap:.4rem; }
 }
 
 @media (prefers-reduced-motion: reduce){

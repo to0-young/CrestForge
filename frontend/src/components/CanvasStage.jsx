@@ -15,8 +15,9 @@ export function CanvasStage({
   return (
     <section className="canvas-stage">
       <div className="zoom-row">
+        <span className="zoom-label">{t('zoom.label')}</span>
         <button type="button" className="zoom-btn" aria-label={t('zoom.decrease')} onClick={onZoomOut}>–</button>
-        <span className="zoom-value">{scale}px</span>
+        <span className="zoom-value" title={t('zoom.hint')}>{scale}px</span>
         <button type="button" className="zoom-btn" aria-label={t('zoom.increase')} onClick={onZoomIn}>+</button>
       </div>
       <div className="canvas-wrap" style={{ backgroundSize: `${scale * 2}px ${scale * 2}px` }}>
