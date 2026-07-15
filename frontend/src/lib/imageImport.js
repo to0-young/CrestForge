@@ -33,6 +33,21 @@ export function imageToCappedRGBA(img, cap = IMPORT_MAX_DIM) {
   return { data, width: canvas.width, height: canvas.height };
 }
 
+export function rotateRGBA90CW(data, w, h) {
+  const out = new Uint8ClampedArray(w * h * 4);
+  for (let sy = 0; sy < h; sy++) {
+    for (let sx = 0; sx < w; sx++) {
+      const dx = h - 1 - sy;
+      const dy = sx;
+      const si = (sy * w + sx) * 4;
+      const di = (dy * h + dx) * 4;
+      out[di] = data[si]; out[di + 1] = data[si + 1];
+      out[di + 2] = data[si + 2]; out[di + 3] = data[si + 3];
+    }
+  }
+  return { data: out, width: h, height: w };
+}
+
 export function extractRegionRGBA(data, srcW, x, y, w, h) {
   const out = new Uint8ClampedArray(w * h * 4);
   for (let row = 0; row < h; row++) {

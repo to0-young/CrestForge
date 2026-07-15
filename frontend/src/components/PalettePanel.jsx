@@ -85,7 +85,7 @@ export function PalettePanel({
 
       <div>
         <p className="group-label">{t('palette.exportGroupLabel')}</p>
-        <label className="check-row">
+        <label className="check-row bmp-bg-row">
           {t('palette.bmpBg')}
           <input
             type="color"
