@@ -87,3 +87,21 @@ export function MoonIcon() {
     </svg>
   );
 }
+
+export function RotateLeftIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 12a9 9 0 1 0 3.5-7.1" />
+      <polyline points="3 3 3 9 9 9" />
+    </svg>
+  );
+}
+
+export function RotateRightIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12a9 9 0 1 1-3.5-7.1" />
+      <polyline points="21 3 21 9 15 9" />
+    </svg>
+  );
+}

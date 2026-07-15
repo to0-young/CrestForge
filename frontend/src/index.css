@@ -233,11 +233,14 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible{
   gap:.4rem;
 }
 
+.bmp-bg-row{
+  margin:.3rem 0 .6rem;
+}
 .check-row .bmp-bg-swatch{
-  width:28px; height:20px;
+  width:48px; height:32px;
   padding:0;
   border:1px solid var(--border);
-  border-radius:4px;
+  border-radius:6px;
   background:none;
 }
 .btn{
@@ -520,9 +523,9 @@ footer.hints kbd{
   border:1px solid var(--border);
   border-radius:10px;
   box-shadow:var(--shadow);
-  padding:1.2rem;
-  width:min(880px, 96vw);
-  max-height:90vh;
+  padding:1.4rem;
+  width:min(1120px, 96vw);
+  max-height:92vh;
   overflow:auto;
   display:flex;
   flex-direction:column;
@@ -530,20 +533,42 @@ footer.hints kbd{
 }
 .crop-dialog-panels{
   display:grid;
-  grid-template-columns: minmax(260px,1fr) auto auto;
-  gap:1.2rem;
+  grid-template-columns: repeat(3, auto);
+  gap:1.6rem;
   align-items:start;
+  justify-content:center;
 }
 .crop-panel{ display:flex; flex-direction:column; gap:.6rem; }
 
-.crop-toggle-row{
+.crop-toolbar{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:.6rem;
+  flex-wrap:wrap;
+}
+.crop-toggle-row{
+  display:flex;
+  align-items:center;
+  gap:.6rem;
   font-size:.72rem;
   color:var(--muted);
 }
+.crop-rotate-group{ display:flex; gap:.4rem; }
+.rotate-btn{
+  display:flex;
+  align-items:center;
+  gap:.4rem;
+  padding:.5rem .75rem;
+  border:1px solid var(--border);
+  border-radius:7px;
+  background:var(--surface);
+  font-size:.78rem;
+  font-weight:600;
+  color:var(--text);
+}
+.rotate-btn:hover{ border-color:var(--accent); }
+.rotate-btn svg{ width:18px; height:18px; stroke:var(--text); }
 .toggle-switch{
   width:38px; height:22px;
   border-radius:999px;
@@ -567,7 +592,7 @@ footer.hints kbd{
 .toggle-switch[aria-checked="true"] .toggle-thumb{ transform:translateX(16px); }
 
 .crop-stage-outer{
-  width:280px; height:280px;
+  width:320px; height:320px;
   display:flex; align-items:center; justify-content:center;
   border:1px solid var(--border);
   border-radius:6px;
@@ -577,7 +602,7 @@ footer.hints kbd{
   background-size:10px 10px;
 }
 .crop-stage{ position:relative; }
-.crop-stage img{ position:absolute; inset:0; display:block; }
+.crop-stage canvas{ position:absolute; inset:0; display:block; image-rendering:pixelated; }
 
 .crop-rect{
   position:absolute;
@@ -600,7 +625,7 @@ footer.hints kbd{
 .crop-handle-se{ left:100%; top:100%; cursor:nwse-resize; }
 
 .crop-preview-box{
-  width:200px; height:200px;
+  width:320px; height:320px;
   display:flex; align-items:center; justify-content:center;
   border:1px solid var(--border);
   border-radius:6px;

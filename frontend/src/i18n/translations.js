@@ -96,7 +96,10 @@ export const translations = {
     'toast.emptyCanvas': 'Полотно порожнє — нема чого завантажувати',
 
     'importCrop.title': 'Обрізати перед імпортом',
+    'importCrop.sourceLabel': 'Оригінал',
     'importCrop.useCropLabel': 'Використати обрізку',
+    'importCrop.rotateLeft': 'Повернути на 90° вліво',
+    'importCrop.rotateRight': 'Повернути на 90° вправо',
     'importCrop.trueSizeLabel': ({ cw, ch }) => `Справжній розмір ${cw}×${ch}`,
     'importCrop.resultZoomLabel': ({ cw, ch }) => `Результат ${cw}×${ch} (збільшено)`,
     'importCrop.apply': 'Застосувати',
@@ -213,7 +216,10 @@ export const translations = {
     'toast.emptyCanvas': 'Холст пуст — нечего скачивать',
 
     'importCrop.title': 'Обрезать перед импортом',
+    'importCrop.sourceLabel': 'Оригинал',
     'importCrop.useCropLabel': 'Использовать обрезку',
+    'importCrop.rotateLeft': 'Повернуть на 90° влево',
+    'importCrop.rotateRight': 'Повернуть на 90° вправо',
     'importCrop.trueSizeLabel': ({ cw, ch }) => `Настоящий размер ${cw}×${ch}`,
     'importCrop.resultZoomLabel': ({ cw, ch }) => `Результат ${cw}×${ch} (увеличено)`,
     'importCrop.apply': 'Применить',
@@ -330,7 +336,10 @@ export const translations = {
     'toast.emptyCanvas': 'Canvas is empty — nothing to download',
 
     'importCrop.title': 'Crop before import',
+    'importCrop.sourceLabel': 'Source',
     'importCrop.useCropLabel': 'Use crop',
+    'importCrop.rotateLeft': 'Rotate 90° left',
+    'importCrop.rotateRight': 'Rotate 90° right',
     'importCrop.trueSizeLabel': ({ cw, ch }) => `True size ${cw}×${ch}`,
     'importCrop.resultZoomLabel': ({ cw, ch }) => `Result ${cw}×${ch} (zoom)`,
     'importCrop.apply': 'Apply',
