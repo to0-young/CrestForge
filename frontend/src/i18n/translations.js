@@ -49,6 +49,8 @@ export const translations = {
     'canvas.import.title': 'Імпортувати растрове зображення',
     'canvas.clear': 'Очистити полотно',
 
+    'zoom.label': 'Масштаб полотна:',
+    'zoom.hint': 'Розмір одного пікселя полотна на екрані (не розмір зображення)',
     'zoom.decrease': 'Зменшити',
     'zoom.increase': 'Збільшити',
     'readout.x': 'X',
@@ -164,6 +166,8 @@ export const translations = {
     'canvas.import.title': 'Импортировать растровое изображение',
     'canvas.clear': 'Очистить холст',
 
+    'zoom.label': 'Масштаб холста:',
+    'zoom.hint': 'Размер одного пикселя холста на экране (не размер изображения)',
     'zoom.decrease': 'Уменьшить',
     'zoom.increase': 'Увеличить',
     'readout.x': 'X',
@@ -279,6 +283,8 @@ export const translations = {
     'canvas.import.title': 'Import a raster image',
     'canvas.clear': 'Clear canvas',
 
+    'zoom.label': 'Canvas zoom:',
+    'zoom.hint': 'Size of one canvas pixel on screen (not the image size)',
     'zoom.decrease': 'Zoom out',
     'zoom.increase': 'Zoom in',
     'readout.x': 'X',
