@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { hexToRgb } from '../lib/color.js';
 import { linePixels, rectPixels, circlePixels } from '../lib/shapes.js';
 import { floodFill } from '../lib/floodFill.js';
-import { loadImageFile } from '../lib/imageImport.js';
+import { loadImageFile, boxDownscaleRGBA } from '../lib/imageImport.js';
 import { exportCrestBmp, exportCrestBmpRegion } from '../lib/bmpExport.js';
 import { useI18n } from '../i18n/useI18n.js';
 
@@ -290,6 +290,18 @@ export function useCrestEditor() {
     setModal({ kind: 'png', dataUrl, filename: `crest-${cw}x${ch}.png` });
   }, [format, bufferHasContent, showToast, t]);
 
+  const downloadPngScaled = useCallback((destW, destH, filename) => {
+    if (!bufferHasContent()) { showToast(t('toast.emptyCanvas')); return; }
+    const { cw, ch } = format;
+    const imageData = getBctx().getImageData(0, 0, cw, ch);
+    const scaled = boxDownscaleRGBA(imageData.data, cw, ch, destW, destH);
+    const canvas = document.createElement('canvas');
+    canvas.width = destW; canvas.height = destH;
+    canvas.getContext('2d').putImageData(new ImageData(scaled, destW, destH), 0, 0);
+    const dataUrl = canvas.toDataURL('image/png');
+    setModal({ kind: 'png', dataUrl, filename });
+  }, [format, getBctx, bufferHasContent, showToast, t]);
+
   const exportBmp = useCallback((destW, destH, filename) => {
     if (!bufferHasContent()) { showToast(t('toast.emptyCanvas')); return; }
     const { cw, ch } = format;
@@ -344,7 +356,7 @@ export function useCrestEditor() {
     handlePointerDown, handlePointerMove,
     handlePointerUp: finishStroke, handlePointerCancel: finishStroke,
     importImage, commitImport,
-    downloadPng, exportBmp, exportCombined, hasContent,
+    downloadPng, downloadPngScaled, exportBmp, exportCombined, hasContent,
     bmpBgColor, setBmpBgColor,
     modal, closeModal,
     toast,

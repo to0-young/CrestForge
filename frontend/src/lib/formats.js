@@ -3,4 +3,5 @@ export const CANVAS_FORMATS = [
   { w: 16, h: 12, key: '16x12' },
   { w: 32, h: 32, key: '32x32' },
   { w: 24, h: 12, key: '24x12' },
+  { w: 64, h: 64, key: '64x64' },
 ];
