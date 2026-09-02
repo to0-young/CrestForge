@@ -53,6 +53,7 @@ function App() {
           onSetActiveColor={editor.setActiveColor}
           format={editor.format}
           onDownloadPng={editor.downloadPng}
+          onDownloadPng64={() => editor.downloadPngScaled(64, 64, 'crest-64x64.png')}
           bmpBgColor={editor.bmpBgColor}
           onSetBmpBgColor={editor.setBmpBgColor}
           onExportBmp={editor.exportBmp}

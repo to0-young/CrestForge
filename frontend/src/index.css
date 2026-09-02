@@ -260,6 +260,18 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible{
 .btn:disabled, .btn[aria-disabled="true"]{ opacity:.4; cursor:default; }
 .btn:disabled:hover, .btn[aria-disabled="true"]:hover{ border-color:var(--border); }
 
+.btn-accent{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:var(--accent-ink);
+  font-weight:600;
+}
+.btn-accent:hover{ border-color:var(--accent); filter:brightness(1.06); }
+.btn-accent:disabled, .btn-accent[aria-disabled="true"]{ filter:none; }
+
+.bmp64-btn{ margin-top:.6rem; }
+.png64-btn{ margin-top:.5rem; }
+
 .check-row{
   display:flex;
   align-items:center;

@@ -24,6 +24,8 @@ export const translations = {
     'format.32x32.title': 'Великий герб 32×32',
     'format.24x12.label': '24×12 · Клан+Альянс',
     'format.24x12.title': 'Клан і альянс одним зображенням (16×12 + 8×12)',
+    'format.64x64.label': '64×64',
+    'format.64x64.title': 'Полотно 64×64',
 
     'tool.groupLabel': 'Інструмент',
     'tool.pencil.label': 'Олівець',
@@ -66,6 +68,7 @@ export const translations = {
     'palette.bmpAlliance': 'Альянс 8×12',
     'palette.bmpClan': 'Клан 16×12',
     'palette.bmpLarge': 'Великий герб 32×32',
+    'palette.bmp64': 'Завантажити BMP 64×64',
     'palette.exportCombined': 'Зберегти Клан+Альянс',
     'palette.bmpHint': 'Індексований 8-біт BMP (до 256 кольорів) — формат, який приймає клієнт Lineage 2. Прозорі пікселі заливаються кольором фону. Якщо розмір експорту відрізняється від поточного формату полотна, малюнок буде пропорційно стиснутий/розтягнутий.',
 
@@ -144,6 +147,8 @@ export const translations = {
     'format.32x32.title': 'Большой герб 32×32',
     'format.24x12.label': '24×12 · Клан+Альянс',
     'format.24x12.title': 'Клан и альянс одним изображением (16×12 + 8×12)',
+    'format.64x64.label': '64×64',
+    'format.64x64.title': 'Холст 64×64',
 
     'tool.groupLabel': 'Инструмент',
     'tool.pencil.label': 'Карандаш',
@@ -186,6 +191,7 @@ export const translations = {
     'palette.bmpAlliance': 'Альянс 8×12',
     'palette.bmpClan': 'Клан 16×12',
     'palette.bmpLarge': 'Большой герб 32×32',
+    'palette.bmp64': 'Скачать BMP 64×64',
     'palette.exportCombined': 'Сохранить Клан+Альянс',
     'palette.bmpHint': 'Индексированный 8-бит BMP (до 256 цветов) — формат, который принимает клиент Lineage 2. Прозрачные пиксели заливаются цветом фона. Если размер экспорта отличается от текущего формата холста, рисунок будет пропорционально сжат/растянут.',
 
@@ -264,6 +270,8 @@ export const translations = {
     'format.32x32.title': 'Large crest 32×32',
     'format.24x12.label': '24×12 · Clan+Alliance',
     'format.24x12.title': 'Clan and alliance as one image (16×12 + 8×12)',
+    'format.64x64.label': '64×64',
+    'format.64x64.title': 'Canvas 64×64',
 
     'tool.groupLabel': 'Tool',
     'tool.pencil.label': 'Pencil',
@@ -306,6 +314,7 @@ export const translations = {
     'palette.bmpAlliance': 'Alliance 8×12',
     'palette.bmpClan': 'Clan 16×12',
     'palette.bmpLarge': 'Large crest 32×32',
+    'palette.bmp64': 'Download BMP 64×64',
     'palette.exportCombined': 'Save Clan+Alliance',
     'palette.bmpHint': 'Indexed 8-bit BMP (up to 256 colors) — the format the Lineage 2 client accepts. Transparent pixels are filled with the background color. If the export size differs from the current canvas format, the artwork will be proportionally squashed/stretched.',
 

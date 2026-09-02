@@ -32,12 +32,13 @@ function HexInput({ activeColor, onSetActiveColor }) {
 
 export function PalettePanel({
   activeColor, onSetActiveColor,
-  format, onDownloadPng,
+  format, onDownloadPng, onDownloadPng64,
   bmpBgColor, onSetBmpBgColor,
   onExportBmp, onExportCombined, hasContent,
 }) {
   const { t } = useI18n();
   const isCombined = format.cw === 24 && format.ch === 12;
+  const is64 = format.cw === 64 && format.ch === 64;
   return (
     <aside className="palette-panel" aria-label={t('panel.paletteAriaLabel')}>
       <div>
@@ -79,6 +80,12 @@ export function PalettePanel({
         <DownloadIcon />
         <span>{t('palette.downloadPng', { cw: format.cw, ch: format.ch })}</span>
       </button>
+      {!is64 && (
+        <button type="button" className="btn-primary png64-btn" aria-disabled={!hasContent} onClick={onDownloadPng64}>
+          <DownloadIcon />
+          <span>{t('palette.downloadPng', { cw: 64, ch: 64 })}</span>
+        </button>
+      )}
       <p className="hint">{t('palette.pngHint')}</p>
 
       <div className="divider"></div>
@@ -100,11 +107,15 @@ export function PalettePanel({
           </div>
         ) : (
           <div className="row-actions">
-            <button type="button" className="btn" aria-disabled={!hasContent} title={t('format.8x12.title')} onClick={() => onExportBmp(8, 12, 'crest-8x12.bmp')}>{t('palette.bmpAlliance')}</button>
-            <button type="button" className="btn" aria-disabled={!hasContent} title={t('format.16x12.title')} onClick={() => onExportBmp(16, 12, 'crest-16x12.bmp')}>{t('palette.bmpClan')}</button>
-            <button type="button" className="btn" aria-disabled={!hasContent} title={t('format.32x32.title')} onClick={() => onExportBmp(32, 32, 'crest-32x32.bmp')}>{t('palette.bmpLarge')}</button>
+            <button type="button" className="btn btn-accent" aria-disabled={!hasContent} title={t('format.8x12.title')} onClick={() => onExportBmp(8, 12, 'crest-8x12.bmp')}>{t('palette.bmpAlliance')}</button>
+            <button type="button" className="btn btn-accent" aria-disabled={!hasContent} title={t('format.16x12.title')} onClick={() => onExportBmp(16, 12, 'crest-16x12.bmp')}>{t('palette.bmpClan')}</button>
+            <button type="button" className="btn btn-accent" aria-disabled={!hasContent} title={t('format.32x32.title')} onClick={() => onExportBmp(32, 32, 'crest-32x32.bmp')}>{t('palette.bmpLarge')}</button>
           </div>
         )}
+        <button type="button" className="btn-primary bmp64-btn" aria-disabled={!hasContent} title={t('format.64x64.title')} onClick={() => onExportBmp(64, 64, 'crest-64x64.bmp')}>
+          <DownloadIcon />
+          <span>{t('palette.bmp64')}</span>
+        </button>
         <p className="hint">{t('palette.bmpHint')}</p>
       </div>
     </aside>
