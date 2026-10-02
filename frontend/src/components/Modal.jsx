@@ -45,7 +45,7 @@ export function Modal({ modal, onClose }) {
         <p className="hint">{t('modal.pngHint')}</p>
         <div className="modal-actions">
           <button type="button" className="btn" onClick={onClose}>{t('modal.close')}</button>
-          <a className="btn-primary" href={modal.dataUrl} download={modal.filename}>{t('modal.downloadFile')}</a>
+          <a className="btn-primary" href={modal.dataUrl} download={modal.filename} onClick={onClose}>{t('modal.downloadFile')}</a>
         </div>
       </>
     );
@@ -62,7 +62,7 @@ export function Modal({ modal, onClose }) {
         <p className="hint">{t('modal.bmpHint', { colorCount: modal.colorCount })}</p>
         <div className="modal-actions">
           <button type="button" className="btn" onClick={onClose}>{t('modal.close')}</button>
-          <a className="btn-primary" href={modal.url} download={modal.filename}>{t('modal.downloadFile')}</a>
+          <a className="btn-primary" href={modal.url} download={modal.filename} onClick={onClose}>{t('modal.downloadFile')}</a>
         </div>
       </>
     );
