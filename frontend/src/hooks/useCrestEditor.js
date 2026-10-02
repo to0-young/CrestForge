@@ -330,15 +330,18 @@ export function useCrestEditor() {
     function onKeyDown(e) {
       const tag = (e.target && e.target.tagName) || '';
       if (tag === 'INPUT') return;
-      const k = e.key.toLowerCase();
+      // Use e.code (physical key) instead of e.key so shortcuts still work
+      // under non-Latin keyboard layouts (e.g. Cyrillic), where e.key for
+      // Ctrl+Z/Y etc. is layout-dependent and not 'z'/'y'.
+      const code = e.code;
       if (e.ctrlKey || e.metaKey) {
-        if (k === 'z') { e.preventDefault(); if (e.shiftKey) redo(); else undo(); }
-        else if (k === 'y') { e.preventDefault(); redo(); }
+        if (code === 'KeyZ') { e.preventDefault(); if (e.shiftKey) redo(); else undo(); }
+        else if (code === 'KeyY') { e.preventDefault(); redo(); }
         return;
       }
-      const map = { p: 'pencil', e: 'eraser', f: 'fill', i: 'dropper', l: 'line', r: 'rect', c: 'circle' };
-      if (map[k]) setTool(map[k]);
-      else if (k === 'g') setGridOn((g) => !g);
+      const map = { KeyP: 'pencil', KeyE: 'eraser', KeyF: 'fill', KeyI: 'dropper', KeyL: 'line', KeyR: 'rect', KeyC: 'circle' };
+      if (map[code]) setTool(map[code]);
+      else if (code === 'KeyG') setGridOn((g) => !g);
     }
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
